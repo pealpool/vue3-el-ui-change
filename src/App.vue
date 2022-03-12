@@ -4,6 +4,7 @@
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
+  <el-button> 我是 ElButton </el-button>
 </template>
 
 <style lang="scss">
