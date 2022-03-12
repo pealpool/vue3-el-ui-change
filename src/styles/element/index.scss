@@ -1,0 +1,19 @@
+//https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
+/* 只需要重写你需要的即可 */
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': green,
+    ),
+  ),
+  $border-radius: (
+    'base': 4px,
+    'small': 2px,
+    'round': 20px,
+    'circle': 100%,
+  )
+);
+
+// 如果只是按需导入，则可以忽略以下内容。
+// 如果你想导入所有样式:
+@use "element-plus/theme-chalk/src/index.scss" as *;
