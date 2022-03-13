@@ -1,78 +1,22 @@
 <template>
-  <div class="demo-date-picker">
-    <div class="block">
-      <span class="demonstration">Default</span>
-      <el-date-picker v-model="value1" type="date" placeholder="Pick a day">
-      </el-date-picker>
-    </div>
-    <div class="block">
-      <span class="demonstration">Picker with quick options</span>
-      <el-date-picker
-          v-model="value2"
-          type="date"
-          placeholder="Pick a day"
-          :disabled-date="disabledDate"
-          :shortcuts="shortcuts"
-      >
-      </el-date-picker>
-    </div>
-  </div>
-
+  <el-space wrap spacer="|">
+    <el-card v-for="i in 3" :key="i" class="box-card" style="width: 250px">
+      <template #header>
+        <div class="card-header">
+          <span>Card name</span>
+          <el-button class="button" type="text">Operation button</el-button>
+        </div>
+      </template>
+      <div v-for="o in 4" :key="o" class="text item">
+        {{ 'List item ' + o }}
+      </div>
+    </el-card>
+  </el-space>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
+<script setup lang="ts">
 
-const value1 = ref('')
-const value2 = ref('')
-
-const shortcuts = [
-  {
-    text: '今天',
-    value: new Date(),
-  },
-  {
-    text: '昨天',
-    value: () => {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24)
-      return date
-    },
-  },
-  {
-    text: '一个星期前',
-    value: () => {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-      return date
-    },
-  },
-]
-
-const disabledDate = (time: Date) => {
-  return time.getTime() > Date.now()
-}
 </script>
-<style scoped>
-.demo-date-picker {
-  display: flex;
-  width: 100%;
-  padding: 0;
-  flex-wrap: wrap;
-}
-.demo-date-picker .block {
-  padding: 30px 0;
-  text-align: center;
-  border-right: solid 1px var(--el-border-color-base);
-  flex: 1;
-}
-.demo-date-picker .block:last-child {
-  border-right: none;
-}
-.demo-date-picker .demonstration {
-  display: block;
-  color: var(--el-text-color-secondary);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
+<style scoped lang="scss">
+
 </style>
