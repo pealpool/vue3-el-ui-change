@@ -1,11 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/date">Date</router-link>
-  </nav>
-  <router-view/>
-
+  <el-row class="row-bg" justify="center">
+    <nav>
+      <router-link to="/">Home</router-link>
+      |
+      <router-link to="/about">About</router-link>
+      |
+      <router-link to="/date" name="first">Date</router-link>
+    </nav>
+  </el-row>
+  <el-row class="row-bg" justify="center">
+    <router-view/>
+    asdfasdf
+    <router-view name="first"/>
+  </el-row>
 </template>
 <script lang="ts" setup>
 

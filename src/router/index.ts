@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+// import DatePickerView from '../views/DatePickerView.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,7 +18,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/date',
     name: 'DatePickerComponent',
-    component: () => import('../views/DatePickerView.vue')
+    // component: () => import('../views/DatePickerView.vue')
+    components:{
+      default:() => import('../views/AboutView.vue'),
+      first: () => import('../views/DatePickerView.vue')
+    }
   }
 ]
 
