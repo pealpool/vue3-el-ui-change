@@ -6,27 +6,30 @@
         :model="ruleForm"
         :rules="rules"
         label-width="120px"
-        class="demo-ruleForm"
-        :size="formSize"
+        status-icon
     >
       <el-form-item :label-width="labelW" label="用户名" prop="name">
         <el-input v-model="ruleForm.name"/>
       </el-form-item>
-      <el-form-item :label-width="labelW" label="密码" prop="password">
-        <el-input :type="passw"
-                  v-model.trim="ruleForm.password"
-                  show-password
+      <el-form-item label-width="70px" label="密码" prop="password">
+        <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label-width="70px" label="再次确认" prop="checkPass">
+        <el-input
+            v-model="ruleForm.checkPass"
+            type="password"
+            autocomplete="off"
         />
       </el-form-item>
-      <el-form-item :label-width="labelW" prop="type" label="密码">
+      <el-form-item :label-width="labelW" prop="type">
         <el-checkbox v-model="ruleForm.type" label="同意协议" name="type"/>
       </el-form-item>
       <el-form-item>
-        <el-button @click="toSignUp">注册</el-button>
-        <el-button type="primary"
-                   @click="submitForm(ruleFormRef)"
-                   @keyup.enter="submitForm(ruleFormRef)">登录
-        </el-button>
+        <el-button @click="toSignUp">登录</el-button>
+<!--        <el-button type="primary"-->
+<!--                   @click="submitForm(ruleFormRef)"-->
+<!--                   @keyup.enter="submitForm(ruleFormRef)">注册-->
+<!--        </el-button>-->
       </el-form-item>
     </el-form>
   </div>
@@ -47,21 +50,44 @@ const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
   name: '',
+  password:'',
+  checkPass: '',
   type: []
 })
-let passw = ref<string>('password')
-let labelW: string
-labelW = '70px'
 
+let labelW = '70px'
+
+
+const validatePass = (rule: any, value: any, callback: any) => {
+  console.log(1);
+  if (value === '') {
+    callback(new Error('Please input the password'))
+  } else {
+    if (ruleForm.checkPass !== '') {
+      if (!ruleFormRef.value) return
+      ruleFormRef.value.validateField('checkPass', () => null)
+    }
+    callback()
+  }
+}
+
+const validatePass2 = (rule: any, value: any, callback: any) => {
+  console.log(2);
+  if (value === '') {
+    callback(new Error('Please input the password again'))
+  } else if (value !== ruleForm.password) {
+    callback(new Error("Two inputs don't match!"))
+  } else {
+    callback()
+  }
+}
 const rules = reactive({
   name: [
     {required: true, message: '请输入用户名', trigger: 'blur'},
     {min: 3, max: 5, message: '长度必须为3-5', trigger: 'blur'},
   ],
-  password: [
-    {required: true, message: '请输入用户名', trigger: 'blur'},
-    {min: 3, max: 5, message: '长度必须为3-5', trigger: 'blur'},
-  ],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+  checkPass: [{validator: validatePass2, trigger: 'blur'}],
   type: [
     {
       type: 'array',
@@ -71,8 +97,6 @@ const rules = reactive({
     },
   ],
 })
-
-
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
@@ -87,27 +111,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
 //触发子传父，转注册
 function toSignUp() {
-  emit('signChange', true)
+  emit('signChange', false)
 }
 </script>
 
 <style scoped lang="scss">
-.signBox {
-  width: 450px;
-  height: 350px;
-  box-sizing: border-box;
-  padding: 40px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0.9px 2.2px 2.2px rgba(0, 0, 0, 0.02),
-  2.2px 5.3px 5.3px rgba(0, 0, 0, 0.028),
-  4.1px 9.9px 10px rgba(0, 0, 0, 0.035),
-  7.4px 17.6px 17.9px rgba(0, 0, 0, 0.042),
-  13.8px 33px 33.4px rgba(0, 0, 0, 0.05),
-  33px 79px 80px rgba(0, 0, 0, 0.07);
 
-  h2 {
-    text-align: center;
-  }
-}
 </style>

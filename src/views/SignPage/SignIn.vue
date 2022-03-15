@@ -6,19 +6,18 @@
         :model="ruleForm"
         :rules="rules"
         label-width="120px"
-        class="demo-ruleForm"
         :size="formSize"
     >
       <el-form-item :label-width="labelW" label="用户名" prop="name">
         <el-input v-model="ruleForm.name"/>
       </el-form-item>
       <el-form-item :label-width="labelW" label="密码" prop="password">
-        <el-input :type="passw"
-                  v-model.trim="ruleForm.password"
+        <el-input v-model.trim="ruleForm.password"
+                  autocomplete="off"
                   show-password
         />
       </el-form-item>
-      <el-form-item :label-width="labelW" prop="type" label="密码">
+      <el-form-item :label-width="labelW" prop="type">
         <el-checkbox v-model="ruleForm.type" label="同意协议" name="type"/>
       </el-form-item>
       <el-form-item>
@@ -47,11 +46,11 @@ const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
   name: '',
+  password:'',
   type: []
 })
-let passw = ref<string>('password')
-let labelW: string
-labelW = '70px'
+
+let labelW = '70px'
 
 const rules = reactive({
   name: [
@@ -92,22 +91,5 @@ function toSignUp() {
 </script>
 
 <style scoped lang="scss">
-.signBox {
-  width: 450px;
-  height: 350px;
-  box-sizing: border-box;
-  padding: 40px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0.9px 2.2px 2.2px rgba(0, 0, 0, 0.02),
-  2.2px 5.3px 5.3px rgba(0, 0, 0, 0.028),
-  4.1px 9.9px 10px rgba(0, 0, 0, 0.035),
-  7.4px 17.6px 17.9px rgba(0, 0, 0, 0.042),
-  13.8px 33px 33.4px rgba(0, 0, 0, 0.05),
-  33px 79px 80px rgba(0, 0, 0, 0.07);
 
-  h2 {
-    text-align: center;
-  }
-}
 </style>

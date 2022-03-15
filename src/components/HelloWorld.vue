@@ -1,7 +1,7 @@
 <template>
   <el-space wrap spacer="|">
     <el-card v-for="i in 3" :key="i" class="box-card" style="width: 250px">
-      <template #header>
+      <template>
         <div class="card-header">
           <span>Card name</span>
           <el-button class="button" type="text">Operation button</el-button>
