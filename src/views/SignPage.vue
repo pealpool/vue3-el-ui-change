@@ -37,7 +37,10 @@
 <script lang="ts" setup>
 import {reactive, ref} from 'vue'
 import type {FormInstance} from 'element-plus'
-import router from "@/router";
+import { useRouter, useRoute } from 'vue-router'
+import {useStore} from 'vuex'
+const router = useRouter()
+const store = useStore()
 
 
 const formSize = ref('default')
@@ -46,8 +49,9 @@ const ruleForm = reactive({
   name: '',
   type: []
 })
-let passw = ref('password')
-let labelW = '70px'
+let passw = ref<string>('password')
+let labelW: string
+labelW = '70px'
 
 const rules = reactive({
   name: [
@@ -73,7 +77,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-
+      store.dispatch('setUserCookie_A')
       router.push({name: 'home'})
     } else {
       console.log('error submit!', fields)

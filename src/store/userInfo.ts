@@ -1,5 +1,5 @@
-export interface Store {
-    userCookie: string
+export interface State {
+    userCookie: boolean
 }
 
 export default {
@@ -7,12 +7,20 @@ export default {
         signData: {
             namespace: true,
             state: {
-                userCookie: ''
+                userCookie: false
             },
             getters: {},
-            actions: {},
-            mutations: {}
+            actions: {
+                setUserCookie_A({commit}:any) {
+                    commit('setUserCookie_M')
+                    sessionStorage.setItem('userCookie','true')
+                }
+            },
+            mutations: {
+                setUserCookie_M(state:State ) {
+                    state.userCookie = true
+                }
+            }
         }
     }
-
 }

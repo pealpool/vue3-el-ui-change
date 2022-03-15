@@ -11,5 +11,4 @@ const app = createApp(App);
 app.use(ElementPlus, {
     locale: zhCn,
 })
-app.use(store)
-app.use(router).mount('#app');
+app.use(store).use(router).mount('#app');
