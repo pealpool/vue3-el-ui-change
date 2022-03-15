@@ -91,5 +91,7 @@ function toSignUp() {
 </script>
 
 <style scoped lang="scss">
-
+.signBox{
+  height: 330px;
+}
 </style>
