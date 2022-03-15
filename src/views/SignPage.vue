@@ -10,19 +10,17 @@
           class="demo-ruleForm"
           :size="formSize"
       >
-        <el-form-item label-width="80px" label="用户名" prop="name">
+        <el-form-item :label-width="labelW" label="用户名" prop="name">
           <el-input v-model="ruleForm.name"/>
         </el-form-item>
-        <el-form-item label-width="80px" label="密码" prop="password">
+        <el-form-item :label-width="labelW" label="密码" prop="password">
           <el-input :type="passw"
                     v-model.trim="ruleForm.password"
                     show-password
           />
         </el-form-item>
-        <el-form-item label-width="80px" prop="type">
-          <el-checkbox-group v-model="ruleForm.type">
-            <el-checkbox label="同意协议" name="type"/>
-          </el-checkbox-group>
+        <el-form-item :label-width="labelW" prop="type" label="密码">
+          <el-checkbox v-model="ruleForm.type" label="同意协议" name="type"/>
         </el-form-item>
         <el-form-item>
           <el-button>注册</el-button>
@@ -39,7 +37,7 @@
 <script lang="ts" setup>
 import {reactive, ref} from 'vue'
 import type {FormInstance} from 'element-plus'
-import { View, Hide } from '@element-plus/icons-vue'
+import router from "@/router";
 
 
 const formSize = ref('default')
@@ -49,7 +47,7 @@ const ruleForm = reactive({
   type: []
 })
 let passw = ref('password')
-let viewOn = ref(true)
+let labelW = '70px'
 
 const rules = reactive({
   name: [
@@ -71,12 +69,12 @@ const rules = reactive({
 })
 
 
-
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
+
+      router.push({name: 'home'})
     } else {
       console.log('error submit!', fields)
     }
@@ -97,7 +95,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
 .signBox {
   width: 450px;
-  height: 400px;
+  height: 350px;
   box-sizing: border-box;
   padding: 40px;
   background-color: #fff;

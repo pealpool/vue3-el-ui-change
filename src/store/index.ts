@@ -1,14 +1,8 @@
-import { createStore } from 'vuex'
+import {createStore, ModuleTree} from 'vuex'
+import userInfo from "@/store/userInfo";
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    modules: {
+        userInfo
+    }
 })
