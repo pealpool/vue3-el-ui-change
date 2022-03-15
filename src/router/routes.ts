@@ -1,6 +1,5 @@
 import HomeView from "@/views/HomeView.vue";
 
-
 export default [
     {
         path: '/',
@@ -15,11 +14,17 @@ export default [
         }
     },
     {
+        path: '/:catchAll(.*)',
+        name: 'page404',
+        component: () => import('@/views/page404.vue'),
+    },
+    {
         path: '/sign-page',
         name: 'sign-page',
-        component: () => import('@/views/SignPage.vue'),
+        component: () => import('@/views/SignPage/SignPage.vue'),
         meta:{
             auth: true
         }
-    }
+    },
+
 ]
