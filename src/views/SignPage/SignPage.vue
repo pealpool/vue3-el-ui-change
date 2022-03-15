@@ -1,18 +1,26 @@
 <template>
   <div class="wp">
-    <Transition>
-      <sign-in @signChange="signChange"/>
+    <Transition name="si">
+      <sign-in v-if="signC" @signChange="signChange"/>
+    </Transition>
+    <Transition name="su">
+      <sign-up v-if="!signC"/>
     </Transition>
   </div>
 </template>
 
 <script lang="ts" setup>
 import SignIn from "@/views/SignPage/SignIn.vue";
-let signC: boolean = true;
+import SignUp from "@/views/SignPage/SignUp.vue";
+import {ref} from "vue";
+let signC = ref(true) ;
+
 function signChange(a: boolean) {
   if (a) {
+    signC.value = false;
     console.log('++++',a);
   } else {
+    signC.value = true;
     console.log('----',a);
   }
 }
@@ -29,6 +37,18 @@ function signChange(a: boolean) {
   justify-content: center;
   align-items: center;
 }
+.si-enter-active,
+.si-leave-active,
+.su-enter-active,
+.su-leave-active,{
+  transition: all 0.5s cubic-bezier(0.96, -0.01, 1, 1);
+}
 
+.su-enter-from {
+  margin-bottom: -100%;
+}
+.si-leave-to {
+  margin-top: -100%;
+}
 
 </style>
