@@ -8,7 +8,7 @@
           active-text-color="#ffd04b"
           class="el-menu-vertical-demo"
           default-active="2"
-          background-color="#545c64"
+          background-color="none"
           text-color="#fff"
           @open="handleOpen"
           @close="handleClose">
@@ -135,9 +135,15 @@ const handleClose = (key: string, keyPath: string[]) => {
 <style lang='scss' scoped>
 .el-aside {
   width: 240px;
-  height: auto;
-  background-color: #545c64;
-  border-right: solid 1px #e6e6e6;
+  height: 100%;
+  background-color: #195a9b;
   box-sizing: border-box;
+
 }
+
+.el-menu{
+  border-right-width:0;
+}
+
+
 </style>

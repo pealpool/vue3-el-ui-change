@@ -2,7 +2,7 @@
   <el-container class="h-body">
     <left-view/>
     <el-container>
-      <el-header style="text-align: right; font-size: 12px">
+      <el-header>
         <head-view/>
       </el-header>
       <right-view/>
@@ -16,8 +16,6 @@ import HeadView from "@/components/HeadView.vue";
 import RightView from "@/components/RightView.vue";
 
 
-
-
 </script>
 
 <style scoped lang="scss">
@@ -25,13 +23,16 @@ import RightView from "@/components/RightView.vue";
   width: 100%;
   height: 100%;
   color: var(--el-text-color-primary);
-
-  .el-main {
-    padding: 0;
-  }
-  .el-header {
-    position: relative;
-  }
 }
+
+.el-header {
+  position: relative;
+  background-color: #74758d;
+}
+
+.el-main {
+  padding: 0;
+}
+
 
 </style>

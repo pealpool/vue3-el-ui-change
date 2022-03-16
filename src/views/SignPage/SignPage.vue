@@ -31,6 +31,7 @@ function signChange(a: boolean) {
   position: relative;
 }
 
+
 .signBox {
   width: 450px;
   position: absolute;
@@ -47,7 +48,6 @@ function signChange(a: boolean) {
   7.4px 17.6px 17.9px rgba(4, 52, 100, 0.042),
   13.8px 33px 33.4px rgba(4, 52, 100, 0.05),
   33px 79px 80px rgba(4, 52, 100, 0.07);
-
   ::v-deep(h2) {
     text-align: center;
   }
