@@ -5,7 +5,11 @@
       <el-header>
         <head-view/>
       </el-header>
-      <right-view/>
+      <el-main>
+        <el-scrollbar>
+          <router-view/>
+        </el-scrollbar>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -13,7 +17,6 @@
 <script lang="ts" setup>
 import LeftView from '@/components/LeftView.vue';
 import HeadView from "@/components/HeadView.vue";
-import RightView from "@/components/RightView.vue";
 
 
 </script>
@@ -27,7 +30,6 @@ import RightView from "@/components/RightView.vue";
 
 .el-header {
   position: relative;
-  background-color: #74758d;
 }
 
 .el-main {

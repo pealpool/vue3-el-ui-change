@@ -11,7 +11,14 @@ export default [
         component: HomeView,
         meta:{
             auth: true
-        }
+        },
+        children:[
+            {
+                path:'table-view',
+                name:'table-view',
+                component:()=>import('@/views/tableView.vue'),
+            }
+        ]
     },
     {
         path: '/:catchAll(.*)',

@@ -17,11 +17,14 @@
             <el-icon>
               <message/>
             </el-icon>
-            Navigator One
+            给水检测系统
           </template>
           <el-menu-item-group>
             <template #title>Group 1</template>
-            <el-menu-item index="1-1">Option 1</el-menu-item>
+            <el-menu-item index="1-1"
+                          @click="toPage('table-view')">
+              table-view
+            </el-menu-item>
             <el-menu-item index="1-2">Option 2</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="Group 2">
@@ -32,18 +35,38 @@
             <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
-        <el-menu-item index="3">
+        <el-menu-item index="2">
           <el-icon>
             <icon-menu/>
           </el-icon>
-          <span>Navigator Two</span>
+          <span>用电检测系统</span>
         </el-menu-item>
-        <el-menu-item index="4" disabled>
+        <el-menu-item index="3" disabled>
           <el-icon>
             <document/>
           </el-icon>
           <span>Navigator Three</span>
         </el-menu-item>
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon>
+              <setting/>
+            </el-icon>
+            Navigator Three
+          </template>
+          <el-menu-item-group>
+            <template #title>Group 1</template>
+            <el-menu-item index="3-1">Option 1</el-menu-item>
+            <el-menu-item index="3-2">Option 2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="Group 2">
+            <el-menu-item index="3-3">Option 3</el-menu-item>
+          </el-menu-item-group>
+          <el-sub-menu index="3-4">
+            <template #title>Option 4</template>
+            <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
+          </el-sub-menu>
+        </el-sub-menu>
         <el-sub-menu index="5">
           <template #title>
             <el-icon>
@@ -84,26 +107,6 @@
             <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
-        <el-sub-menu index="7">
-          <template #title>
-            <el-icon>
-              <setting/>
-            </el-icon>
-            Navigator Three
-          </template>
-          <el-menu-item-group>
-            <template #title>Group 1</template>
-            <el-menu-item index="3-1">Option 1</el-menu-item>
-            <el-menu-item index="3-2">Option 2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group 2">
-            <el-menu-item index="3-3">Option 3</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="3-4">
-            <template #title>Option 4</template>
-            <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
       </el-menu>
     </el-scrollbar>
   </el-aside>
@@ -112,24 +115,24 @@
 </template>
 
 <script lang='ts' setup>
-import {ref} from 'vue'
 import {
-  Message, Menu as IconMenu, Setting, Location, Document,
+  Message, Document, Menu as IconMenu, Setting,
 } from '@element-plus/icons-vue'
+import router from "@/router";
 
-const item = {
-  date: '2016-05-02',
-  name: 'Tom',
-  address: 'No. 189, Grove St, Los Angeles',
+function toPage(path: string) {
+  router.push({name: path});
 }
-const tableData = ref(Array.from({length: 20}).fill(item))
 
+//一级菜单打开响应
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+//一级菜单关闭响应
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
 </script>
 
 <style lang='scss' scoped>
@@ -141,8 +144,8 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 }
 
-.el-menu{
-  border-right-width:0;
+.el-menu {
+  border-right-width: 0;
 }
 
 
