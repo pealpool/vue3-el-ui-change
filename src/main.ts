@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import './styles/element/index.scss'
 import 'normalize.css/normalize.css'
+import '@/styles/default.scss'
 
 const app = createApp(App);
 app.use(ElementPlus, {

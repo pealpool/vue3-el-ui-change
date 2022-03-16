@@ -17,19 +17,15 @@ import {ref} from "vue";
 let signC = ref(true);
 
 function signChange(a: boolean) {
-  if (a) {
-    signC.value = false;
-  } else {
-    signC.value = true;
-  }
+  signC.value = !a;
 }
-
 </script>
 
 <style scoped lang="scss">
+
 .wb {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #f1f8ff;
   overflow: hidden;
   position: relative;
@@ -112,20 +108,5 @@ $d-time:0.6s;
     top: 50%;
   }
 }
-
-/*.su-enter-from,
-.si-enter-from {
-  //top: 100%;
-  box-shadow: 0.9px 2.2px 2.2px rgba(0, 0, 0, 0.02),
-  2.2px 5.3px 5.3px rgba(0, 0, 0, 0.028),
-  4.1px 9.9px 10px rgba(0, 0, 0, 0.035);
-}
-
-.su-leave-to,
-.si-leave-to {
-  //top: -100%;
-  box-shadow: 0.9px 2.2px 2.2px rgba(0, 0, 0, 0.02);
-}*/
-
 
 </style>
