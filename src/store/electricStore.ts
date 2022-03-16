@@ -1,5 +1,5 @@
 export interface State {
-    userCookie: boolean
+    data: Array<any>
 }
 
 import {reqGetElectricalDate} from '@/api';
@@ -9,7 +9,7 @@ export default {
         electricData: {
             namespace: true,
             state: {
-                data: {}
+                data: []
             },
             getters: {},
             actions: {
@@ -21,11 +21,10 @@ export default {
                 }
             },
             mutations: {
-                rgElectricData_M(state: State) {
-                    state.userCookie = true
+                rgElectricData_M(state: State,result:any) {
+                    state.data = result
                 }
             }
         }
     }
 }
-//todo 发请求

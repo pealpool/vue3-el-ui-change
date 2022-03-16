@@ -1,17 +1,21 @@
 <template>
   <el-table :data="tableData">
-    <el-table-column prop="date" label="房号"/>
-    <el-table-column prop="name" label="用电量"/>
-    <el-table-column prop="address" label="用电消费（元）"/>
-    <el-table-column prop="address" label="插座用电量"/>
-    <el-table-column prop="address" label="插座消费（元）"/>
-    <el-table-column prop="address" label="空调用电"/>
-    <el-table-column prop="address" label="空调消费（元）"/>
+    <el-table-column prop="roomNumber" label="房号"/>
+    <el-table-column prop="allPowerValue" label="用电量"/>
+    <el-table-column prop="allPowerCost" label="用电消费（元）"/>
+    <el-table-column prop="socPowerValue" label="插座用电量"/>
+    <el-table-column prop="socPowerCost" label="插座消费（元）"/>
+    <el-table-column prop="airPowerValue" label="空调用电"/>
+    <el-table-column prop="airPowerCost" label="空调消费（元）"/>
   </el-table>
+  {{ count[0].id }}
 </template>
 
 <script lang='ts' setup>
-import {onBeforeMount, ref} from "vue";
+import {onBeforeMount, ref, computed, reactive} from "vue";
+import {useStore} from 'vuex'
+
+const store = useStore()
 
 
 // const item = {
@@ -20,11 +24,14 @@ import {onBeforeMount, ref} from "vue";
 //   address: 'No. 189, Grove St, Los Angeles',
 // }
 // const tableData = ref(Array.from({length: 20}).fill(item))
+const count = computed(() => store.state.electricStore.electricData.data)
+// const item = count
+const tableData = ref(Array.from({length: 20}).fill(count))
+//todo 表格填充
 
 
 onBeforeMount(() => {
-  console.log(`the component is now mounted.`)
-
+  store.dispatch('rgElectricData_A')
 })
 
 </script>

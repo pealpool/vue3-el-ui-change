@@ -5,7 +5,7 @@ import store from '@/store';
 
 
 const requests = axios.create({
-    baseURL: "/api",
+    baseURL: "http://localhost:8090/api",
     timeout: 5000,
 });
 
