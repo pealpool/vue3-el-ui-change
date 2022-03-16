@@ -126,11 +126,11 @@ function toPage(path: string) {
 
 //一级菜单打开响应
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 //一级菜单关闭响应
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 
 </script>

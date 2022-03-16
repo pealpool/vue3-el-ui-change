@@ -13,6 +13,7 @@
 <script lang='ts' setup>
 import {onBeforeMount, ref} from "vue";
 
+
 // const item = {
 //   date: '2016-05-02',
 //   name: 'Tom',
@@ -23,6 +24,7 @@ import {onBeforeMount, ref} from "vue";
 
 onBeforeMount(() => {
   console.log(`the component is now mounted.`)
+
 })
 
 </script>
