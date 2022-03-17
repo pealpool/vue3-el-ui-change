@@ -3,6 +3,7 @@
     <el-table :data="tableData" :height="tableHeight"
               :default-sort="{ prop: 'roomNumber', order: 'descending' }"
               :row-class-name="tableRowClassName"
+              :cell-class-name="tableColClassName"
     >
       <el-table-column sortable="custom" align="center" prop="roomNumber" label="房号"/>
       <el-table-column sortable="custom" align="center" prop="allPowerValue" label="用电量"/>
@@ -25,7 +26,7 @@
 </template>
 
 <script lang='ts' setup>
-import {onBeforeMount, ref, computed, reactive} from "vue";
+import {onBeforeMount, ref, computed, onUpdated} from "vue";
 import {useStore} from 'vuex'
 
 const store = useStore()
@@ -39,25 +40,34 @@ const tableData = computed(() => store.state.electricStore.electricData.data)
 const currentPage3 = ref(5)
 const pageSize3 = ref(100)
 
-//表格警告上色
+//表格row上色
 interface User {
   allPowerValue: number
+  property: any
 }
 
-//todo 未能上色
 const tableRowClassName = ({row}: { row: User }) => {
-  console.log(row);
-  if (row.allPowerValue === 85) {
-    console.log('danger-row');
+  if (row.allPowerValue >= 95) {
     return 'danger-row'
-  } else if (row.allPowerValue >= 50) {
-    console.log('warning-row');
+  } else if (row.allPowerValue >= 90) {
     return 'warning-row'
-  } else {
-    // console.log('aaaaaaaaa');
-    return ''
   }
+  return ''
 }
+
+//表格column上色
+const tableColClassName = ({row, column, columnIndex}: {
+  row: any; column: User; columnIndex: number
+}) => {
+  // console.log(row[column.property]);
+  if (columnIndex === 1 && row[column.property] >= 95) {
+    return 'danger-col-font'
+  } else if (columnIndex === 1 && row[column.property] >= 90) {
+    return 'warning-col-font'
+  }
+  return ''
+}
+
 
 onBeforeMount(() => {
   store.dispatch('rgElectricData_A')
@@ -77,6 +87,7 @@ const handleCurrentChange = (val: number) => {
 </script>
 
 <style lang='scss' scoped>
+
 .r-big-box {
   padding: 20px;
 }
@@ -84,7 +95,7 @@ const handleCurrentChange = (val: number) => {
 .el-pagination {
   float: right;
   margin-top: 20px;
-  margin-right: 50px;
+  margin-right: 30px;
 }
 
 .demo-pagination-block + .demo-pagination-block {
@@ -95,12 +106,18 @@ const handleCurrentChange = (val: number) => {
   margin-bottom: 16px;
 }
 
-.el-table .warning-row {
-  background-color: var(--el-color-warning-light-9);
-  //--el-table-tr-bg-color: var(--el-color-warning-light-9);
+//表格上变色
+::v-deep(.el-table .warning-row) {
+  --el-table-tr-bg-color: var(--el-color-warning-light-9);
+}
+::v-deep(.el-table .danger-row) {
+  --el-table-tr-bg-color: var(--el-color-danger-light-9);
+}
+::v-deep(.warning-col-font){
+  color: var(--el-color-warning);
+}
+::v-deep(.danger-col-font){
+  color: var(--el-color-danger);
 }
 
-.el-table .danger-row {
-  //--el-table-tr-bg-color: var(--el-color-danger-light-9);
-}
 </style>
