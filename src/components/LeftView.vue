@@ -2,7 +2,7 @@
 
   <el-aside width="200px">
     <el-scrollbar>
-      <h5 class="mb-2">Default colors</h5>
+      <h5 >Default colors</h5>
       <el-menu
           :default-openeds="['1', '3']"
           active-text-color="#ffd04b"
