@@ -45,7 +45,7 @@ interface User {
 }
 
 //todo 未能上色
-const tableRowClassName = (row: User) => {
+const tableRowClassName = ({row}: { row: User }) => {
   console.log(row);
   if (row.allPowerValue === 85) {
     console.log('danger-row');
@@ -53,7 +53,7 @@ const tableRowClassName = (row: User) => {
   } else if (row.allPowerValue >= 50) {
     console.log('warning-row');
     return 'warning-row'
-  }else{
+  } else {
     // console.log('aaaaaaaaa');
     return ''
   }
@@ -96,9 +96,11 @@ const handleCurrentChange = (val: number) => {
 }
 
 .el-table .warning-row {
-  --el-table-tr-bg-color: var(--el-color-warning-light-9);
+  background-color: var(--el-color-warning-light-9);
+  //--el-table-tr-bg-color: var(--el-color-warning-light-9);
 }
+
 .el-table .danger-row {
-  --el-table-tr-bg-color: var(--el-color-danger-light-9);
+  //--el-table-tr-bg-color: var(--el-color-danger-light-9);
 }
 </style>
