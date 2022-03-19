@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve --port 8080",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "mock": "node src/mock/mockServe"
+    "mock": "node src/mock/mockServe",
+    "test": "serve ./dist"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.1",
