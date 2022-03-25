@@ -25,7 +25,7 @@
                           @click="toPage('table-view')">
               table-view
             </el-menu-item>
-            <el-menu-item index="1-2">Option 2</el-menu-item>
+            <el-menu-item index="1-2" @click="toPage('pictures-view')">LazyLoad</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="Group 2">
             <el-menu-item index="1-3">Option 3</el-menu-item>

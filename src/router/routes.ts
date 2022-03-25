@@ -17,7 +17,12 @@ export default [
                 path:'table-view',
                 name:'table-view',
                 component:()=>import('@/views/tableView.vue'),
-            }
+            },
+            {
+                path:'pictures-view',
+                name:'pictures-view',
+                component:()=>import('@/views/pictures.vue'),
+            },
         ]
     },
     {
