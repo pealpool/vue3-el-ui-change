@@ -27,14 +27,18 @@
 
 <script lang='ts' setup>
 import {onBeforeMount, ref, computed, onUpdated} from "vue";
-import {useStore} from 'vuex'
+// import {useStore} from 'vuex'
+// const store = useStore()
+import {useElectricStoreStore} from '@/store/electricStore'
 
-const store = useStore()
+const useElectric = useElectricStoreStore()
+
 let tableHeight = ref(600)
 const fixedHeight = 170;
 
 //表格prop对应接受数据的字面量即可
-const tableData = computed(() => store.state.electricStore.electricData.data)
+// const tableData = computed(() => store.state.electricStore.electricData.data)
+const tableData = computed(() => useElectric.data.data)
 
 //分页相关
 const currentPage3 = ref(5)
@@ -70,7 +74,7 @@ const tableColClassName = ({row, column, columnIndex}: {
 
 
 onBeforeMount(() => {
-  store.dispatch('rgElectricData_A')
+  useElectric.rgElectricData_A();
   tableHeight.value = window.innerHeight - fixedHeight;
 })
 window.onresize = function () {
@@ -110,13 +114,16 @@ const handleCurrentChange = (val: number) => {
 ::v-deep(.el-table .warning-row) {
   --el-table-tr-bg-color: var(--el-color-warning-light-9);
 }
+
 ::v-deep(.el-table .danger-row) {
   --el-table-tr-bg-color: var(--el-color-danger-light-9);
 }
-::v-deep(.warning-col-font){
+
+::v-deep(.warning-col-font) {
   color: var(--el-color-warning);
 }
-::v-deep(.danger-col-font){
+
+::v-deep(.danger-col-font) {
   color: var(--el-color-danger);
 }
 

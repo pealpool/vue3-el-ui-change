@@ -35,10 +35,16 @@
 import {reactive, ref, defineEmits} from 'vue'
 import type {FormInstance} from 'element-plus'
 import {useRouter, useRoute} from 'vue-router'
-import {useStore} from 'vuex'
+// import {useStore} from 'vuex'
+// const store = useStore()
+
+//pinia
+import {useSignDateStore} from '@/store/userInfo'
+const useSignDate = useSignDateStore()
+
 
 const router = useRouter()
-const store = useStore()
+
 const emit = defineEmits(['signChange'])
 
 
@@ -76,7 +82,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      store.dispatch('setUserCookie_A')
+      useSignDate.setUserCookie_A();
       router.push({name: 'home'})
     } else {
       console.log('error submit!', fields)

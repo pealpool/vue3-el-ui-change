@@ -1,26 +1,19 @@
+import {defineStore} from 'pinia';
+
 export interface State {
     userCookie: boolean
 }
 
-export default {
-    modules: {
-        signData: {
-            namespace: true,
-            state: {
-                userCookie: false
-            },
-            getters: {},
-            actions: {
-                setUserCookie_A({commit}:any) {
-                    commit('setUserCookie_M')
-                    sessionStorage.setItem('userCookie','true')
-                }
-            },
-            mutations: {
-                setUserCookie_M(state:State ) {
-                    state.userCookie = true
-                }
-            }
+export const useSignDateStore = defineStore('signData', {
+    state: () => {
+        return {
+            userCookie: false
+        }
+    },
+    actions: {
+        setUserCookie_A() {
+            this.userCookie = true
+            sessionStorage.setItem('userCookie', 'true')
         }
     }
-}
+})
